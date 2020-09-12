@@ -1,0 +1,20 @@
+$colors: (
+  color-1: #353a4b,
+  color-2: #5563a9,
+  color-3: #7184e7,
+  color-4: #c788e6,
+  color-5: #f76789,
+);
+
+@each $color in $colors {
+  $index: index($colors, $color);
+  $color: nth($color, 2);
+
+  .bg-color-#{$index} {
+    background-color: $color;
+  }
+
+  .fg-color-#{$index} {
+    color: $color;
+  }
+}

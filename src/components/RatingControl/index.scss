@@ -1,0 +1,50 @@
+.rating-control {
+  display: flex;
+  align-items: center;
+
+  font-family: Inter;
+  font-style: normal;
+  color: #959596;
+
+  .suffix,
+  .prefix {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.02em;
+  }
+
+  .prefix {
+    margin-right: 10px;
+  }
+
+  .suffix {
+    margin-left: 10px;
+  }
+
+  &-item {
+    width: 56px;
+    height: 56px;
+
+    margin: 0 6px;
+
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 34px;
+
+    border: 1.5px solid #cccccc;
+    box-sizing: border-box;
+    border-radius: 100px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    &.selected {
+      color: white;
+      border: none;
+    }
+  }
+}
