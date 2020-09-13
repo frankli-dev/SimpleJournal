@@ -7,6 +7,8 @@ import './App.scss'
 
 function App() {
   const formattedToday = formatDate()
+  const today = moment().startOf('day')
+  const [month, setMonth] = useState(today.month())
   const [trackData, setTrackData] = useState({})
   const [selected, setSelected] = useState(
     trackData[formattedToday] || {
@@ -33,7 +35,6 @@ function App() {
 
   const appClass = classnames('App', `bg-gradient-${selected.rating}`)
   const items = []
-  const today = moment().startOf('day')
   const yearStart = moment().year(today.year()).month(0).date(1).startOf('day')
 
   for (var m = yearStart; m.diff(today, 'days') <= 0; m.add(1, 'days')) {
@@ -52,8 +53,8 @@ function App() {
       <div className="main">
         <FeelingCard data={selected} onSave={onSave} onChange={onUpdateSelected} />
       </div>
-      <ListItems items={items} current={selected.date} />
-      <BottomBar />
+      <ListItems items={items} current={selected.date} onEnterMonth={setMonth} />
+      <BottomBar month={month} year={today.year()} />
     </div>
   )
 }
