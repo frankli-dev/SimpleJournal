@@ -1,9 +1,10 @@
 import React from 'react'
 import classnames from 'classnames'
 import { RatingControl, SaveButton } from 'components'
+import { formatDate } from 'utils'
 import './index.scss'
 
-const FeelingCard = ({ data: { rating, text, date }, onSave, onChange }) => {
+const FeelingCard = ({ data: { rating, text, month, day }, onSave, onChange }) => {
   const saveBtnClass = classnames(`fg-color-${rating}`, `border-color-${rating}`, { hide: !rating || !text })
   return (
     <div className="feeling-card">
@@ -16,8 +17,8 @@ const FeelingCard = ({ data: { rating, text, date }, onSave, onChange }) => {
       </div>
       <div className="divider" />
       <div className="feeling-card-footer">
-        <span className="date">{date}</span>
-        <SaveButton className={saveBtnClass} onClick={() => onSave({ date, rating, text })}>
+        <span className="date">{formatDate(month, day)}</span>
+        <SaveButton className={saveBtnClass} onClick={() => onSave({ month, day, rating, text })}>
           Save
         </SaveButton>
       </div>

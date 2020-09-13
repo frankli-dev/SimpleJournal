@@ -1,28 +1,27 @@
 import React, { useState } from 'react'
 import { FeelingCard, ListItems, BottomBar } from 'components'
-import { formatDate } from 'utils'
 import moment from 'moment'
 import classnames from 'classnames'
 import './App.scss'
 
 function App() {
-  const formattedToday = formatDate()
   const today = moment().startOf('day')
   const [month, setMonth] = useState(today.month())
   const [trackData, setTrackData] = useState({})
   const [selected, setSelected] = useState(
-    trackData[formattedToday] || {
-      date: formattedToday,
+    trackData[`${today.month()}-${today.date()}`] || {
       rating: 0,
       text: '',
+      month: today.month(),
+      day: today.date(),
     },
   )
 
   const onSave = (data) => {
-    console.log('onSave', data)
+    const { month, day } = data
     setTrackData({
       ...trackData,
-      [data.date]: data,
+      [`${month}-${day}`]: data,
     })
   }
 
@@ -33,17 +32,26 @@ function App() {
     })
   }
 
+  const onSelectDate = (month, day) => {
+    setSelected(
+      trackData[`${month}-${day}`] || {
+        rating: 0,
+        text: '',
+        month,
+        day,
+      },
+    )
+  }
+
   const appClass = classnames('App', `bg-gradient-${selected.rating}`)
   const items = []
   const yearStart = moment().year(today.year()).month(0).date(1).startOf('day')
 
   for (var m = yearStart; m.diff(today, 'days') <= 0; m.add(1, 'days')) {
-    const formatted = formatDate(m)
     items.push({
-      date: formatted,
       month: m.month(),
       day: m.date(),
-      ...trackData[formatted],
+      ...trackData[`${m.month()}-${m.date()}`],
     })
   }
 
@@ -53,8 +61,8 @@ function App() {
       <div className="main">
         <FeelingCard data={selected} onSave={onSave} onChange={onUpdateSelected} />
       </div>
-      <ListItems items={items} current={selected.date} onEnterMonth={setMonth} />
-      <BottomBar month={month} year={today.year()} />
+      <ListItems items={items} current={selected} onEnterMonth={setMonth} onSelect={onSelectDate} />
+      <BottomBar month={month} />
     </div>
   )
 }

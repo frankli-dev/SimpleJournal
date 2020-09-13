@@ -1,7 +1,7 @@
 import React from 'react'
-import moment from 'moment'
+import { formatMonth } from 'utils'
 import './index.scss'
 
-const BottomBar = ({ year, month }) => <div className="bottom-bar">{moment().year(year).month(month).date(1).format('MMMM YYYY')}</div>
+const BottomBar = ({ month }) => <div className="bottom-bar">{formatMonth(month)}</div>
 
 export default BottomBar
