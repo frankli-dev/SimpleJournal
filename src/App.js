@@ -2,20 +2,23 @@ import React, { useState } from 'react'
 import { FeelingCard, ListItems, BottomBar } from 'components'
 import moment from 'moment'
 import classnames from 'classnames'
+import { useLocalStorage } from 'hooks'
 import './App.scss'
 
 function App() {
   const today = moment().startOf('day')
-  const [month, setMonth] = useState(today.month())
-  const [trackData, setTrackData] = useState({})
-  const [selected, setSelected] = useState(
-    trackData[`${today.month()}-${today.date()}`] || {
-      rating: 0,
-      text: '',
-      month: today.month(),
-      day: today.date(),
-    },
-  )
+  const [trackData, setTrackData] = useLocalStorage('simplejournal', {})
+
+  const initialData = trackData[`${today.month()}-${today.date()}`] || {
+    rating: 0,
+    text: '',
+    month: today.month(),
+    day: today.date(),
+  }
+
+  const [calendarMonth, setMonth] = useState(today.month())
+  const [selected, setSelected] = useState(initialData)
+  const [theme, setTheme] = useState(initialData.rating)
 
   const onSave = (data) => {
     const { month, day } = data
@@ -23,27 +26,21 @@ function App() {
       ...trackData,
       [`${month}-${day}`]: data,
     })
-  }
-
-  const onUpdateSelected = (key, value) => {
-    setSelected({
-      ...selected,
-      [key]: value,
-    })
+    setSelected(data)
   }
 
   const onSelectDate = (month, day) => {
-    setSelected(
-      trackData[`${month}-${day}`] || {
-        rating: 0,
-        text: '',
-        month,
-        day,
-      },
-    )
+    const data = trackData[`${month}-${day}`] || {
+      rating: 0,
+      text: '',
+      month,
+      day,
+    }
+    setSelected(data)
+    setTheme(data.rating)
   }
 
-  const appClass = classnames('App', `bg-gradient-${selected.rating}`)
+  const appClass = classnames('App', `bg-gradient-${theme}`)
   const items = []
   const yearStart = moment().year(today.year()).month(0).date(1).startOf('day')
 
@@ -59,10 +56,10 @@ function App() {
     <div className={appClass}>
       <span className="logo">Simplejournal</span>
       <div className="main">
-        <FeelingCard data={selected} onSave={onSave} onChange={onUpdateSelected} />
+        <FeelingCard data={selected} onSave={onSave} theme={theme} setTheme={setTheme} />
       </div>
       <ListItems items={items} current={selected} onEnterMonth={setMonth} onSelect={onSelectDate} />
-      <BottomBar month={month} />
+      <BottomBar month={calendarMonth} />
     </div>
   )
 }

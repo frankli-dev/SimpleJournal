@@ -59,5 +59,11 @@
       line-height: 43px;
       color: #959596;
     }
+
+    .saved {
+      &.hide {
+        display: none;
+      }
+    }
   }
 }
