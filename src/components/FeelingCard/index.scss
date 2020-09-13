@@ -8,6 +8,10 @@
   width: 725px;
   margin: 0 auto;
 
+  .hide {
+    display: none;
+  }
+
   &-header {
     background: #f6f4f6;
     border-radius: 17px 17px 0px 0px;
@@ -64,9 +68,6 @@
       font-size: 16px;
       line-height: 19px;
       color: #959596;
-      &.hide {
-        display: none;
-      }
     }
   }
 

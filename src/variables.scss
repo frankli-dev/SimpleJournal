@@ -4,21 +4,23 @@ $colors: (
   color-3: #7184e7,
   color-4: #c788e6,
   color-5: #f76789,
+  color-white: #fff,
+  color-black: #000,
 );
 
 @each $color in $colors {
-  $index: index($colors, $color);
+  $name: nth($color, 1);
   $color: nth($color, 2);
 
-  .bg-color-#{$index} {
+  .bg-#{$name} {
     background-color: $color;
   }
 
-  .fg-color-#{$index} {
+  .fg-#{$name} {
     color: $color;
   }
 
-  .border-color-#{$index} {
+  .border-#{$name} {
     border-color: $color;
   }
 }

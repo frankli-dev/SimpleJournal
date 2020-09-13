@@ -10,9 +10,6 @@ const FeelingCard = ({ data: { rating: initialRating, text: initialText, month, 
   const [text, setText] = useState(initialText)
   const touched = rating !== initialRating || text !== initialText
 
-  console.log(touched)
-
-  const saveBtnClass = classnames(`fg-color-${theme}`, `border-color-${theme}`, { hide: !touched || !rating || !text })
   const savedClass = classnames('saved', { hide: touched || !saved })
 
   useEffect(() => {
@@ -39,7 +36,8 @@ const FeelingCard = ({ data: { rating: initialRating, text: initialText, month, 
         <span className={savedClass}>Saved on {saved}</span>
 
         <SaveButton
-          className={saveBtnClass}
+          hide={!touched || !rating || !text}
+          theme={theme}
           onClick={() => onSave({ month, day, rating, text, saved: `${moment().format('MMMM DD')} at ${moment().format('m:ssa')}` })}
         >
           Save

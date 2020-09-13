@@ -44,6 +44,10 @@
       color: white;
       border: none;
     }
+
+    &:hover {
+      border-width: 2px;
+    }
   }
 
   @media only screen and (max-width: 767px) {
