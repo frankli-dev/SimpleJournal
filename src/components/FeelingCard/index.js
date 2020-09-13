@@ -40,7 +40,7 @@ const FeelingCard = ({ data: { rating: initialRating, text: initialText, month, 
           hide={!info.touched || !info.rating || !info.text}
           theme={theme}
           onClick={() =>
-            onSave({ month, day, rating: info.rating, text: info.text, saved: `${moment().format('MMMM DD')} at ${moment().format('m:ssa')}` })
+            onSave({ month, day, rating: info.rating, text: info.text, saved: `${moment().format('MMMM DD')} at ${moment().format('h:mma')}` })
           }
         >
           Save
