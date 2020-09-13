@@ -12,7 +12,7 @@ const FeelingCard = ({ data: { rating: initialRating, text: initialText, month, 
 
   console.log(touched)
 
-  const saveBtnClass = classnames(`fg-color-${theme}`, `border-color-${theme}`, { hide: !touched })
+  const saveBtnClass = classnames(`fg-color-${theme}`, `border-color-${theme}`, { hide: !touched || !rating || !text })
   const savedClass = classnames('saved', { hide: touched || !saved })
 
   useEffect(() => {

@@ -25,4 +25,14 @@
   &:focus {
     outline: none;
   }
+
+  @media only screen and (max-width: 767px) {
+    width: 105px;
+    height: 34px;
+  }
+
+  @media only screen and (max-width: 424px) {
+    width: 100px;
+    height: 30px;
+  }
 }
