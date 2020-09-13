@@ -1,3 +1,42 @@
 .App {
   background: linear-gradient(180deg, #f57694 0%, #f7b189 62.67%, #ffd28f 99.65%);
+
+  font-family: Inter;
+  font-style: normal;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  .logo {
+    position: absolute;
+    right: 22px;
+    top: 20px;
+
+    font-size: 20px;
+    line-height: 25px;
+
+    color: #f6f4f6;
+  }
+
+  .main {
+    flex-grow: 1;
+    display: flex;
+
+    .feeling-card {
+      margin-top: auto;
+      margin-bottom: 33px;
+    }
+  }
 }
+
+// ::-webkit-scrollbar {
+//   -webkit-appearance: none;
+//   height: 5px;
+// }
+// ::-webkit-scrollbar-thumb {
+//   border-radius: 10px;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+// }

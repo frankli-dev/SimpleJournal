@@ -2,24 +2,27 @@
   display: flex;
   align-items: center;
 
+  width: 100vw;
+  overflow-y: auto;
+
   .list-item {
     background: rgba(252, 251, 252, 0.8);
     backdrop-filter: blur(5px);
 
     border-radius: 20px;
-    margin-right: 19px;
+    margin-right: 16px;
 
-    padding: 16px 24px;
-    width: 206px;
-    height: 104px;
+    padding: 13.5px 20px;
+    min-width: 174px;
+    height: 96px;
 
     .rating {
       background: #ffffff;
       border-radius: 30px;
       border: 2px solid white;
 
-      width: 27px;
-      height: 27px;
+      width: 19px;
+      height: 19px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -31,8 +34,6 @@
     }
 
     h5 {
-      font-family: Inter;
-      font-style: normal;
       font-weight: 500;
       font-size: 16px;
       line-height: 19px;
@@ -40,19 +41,18 @@
 
       color: #333333;
 
-      margin: 13px 0px 10px;
+      margin: 11px 0px 8.5px;
     }
 
     p {
-      font-family: Inter;
-      font-style: normal;
       font-weight: normal;
-      font-size: 12px;
-      line-height: 18px;
+      font-size: 13px;
+      line-height: 15px;
+      margin: 0;
 
       color: #666666;
 
-      max-height: 36px;
+      max-height: 30px;
       display: -webkit-box;
       overflow: hidden;
       /*! autoprefixer: off */
