@@ -1,3 +1,6 @@
+### Live Demo
+https://simplejournal-react.netlify.app/
+
 ### Features (Checked options are done) 🐻
 
 **Design & Functionality**
