@@ -5,6 +5,11 @@ function useHorizontalScroll() {
   useEffect(() => {
     const el = elRef.current
     if (el) {
+      console.log(el.scrollLeft, el.scrollHeight, el.scrollWidth)
+      el.scrollTo({
+        left: el.scrollWidth,
+        // behavior: 'smooth',
+      })
       const onWheel = (e) => {
         e.preventDefault()
         el.scrollTo({

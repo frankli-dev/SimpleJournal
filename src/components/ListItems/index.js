@@ -1,33 +1,27 @@
 import React from 'react'
 import classnames from 'classnames'
 import { useHorizontalScroll } from 'hooks/index'
+import moment from 'moment'
 import './index.scss'
 
-const ListItems = ({}) => {
+const ListItems = ({ items = [] }) => {
   const scrollRef = useHorizontalScroll()
-  const items = [
-    {
-      date: 'Sep 7',
-      rating: 1,
-      text: 'I told mom that what she said hurt my feelings and',
-    },
-    { date: 'Sep 7', rating: 2, text: 'I told mom that what she said hurt my feelings and then something' },
-    { date: 'Sep 8', rating: 3, text: 'I told mom that what she said hurt my feelings and then something' },
-    { date: 'Sep 9', rating: 4, text: 'I told mom that what she said hurt my feelings and then something' },
-    { date: 'Sep 10', rating: 5, text: 'I told mom that what she said hurt my feelings and then something' },
-    { date: 'Sep 11', rating: 0, text: '' },
-    { date: 'Sep 12', rating: 5, text: 'When I was tucking my daughter in for the night' },
-  ]
+  const today = moment().startOf('day')
+  const currentYear = today.year()
 
   return (
     <div className="list-items" ref={scrollRef}>
-      {items.map(({ date, rating, text }) => (
-        <div className="list-item" key={date}>
-          <span className={classnames('rating', { [`fg-color-${rating}`]: rating > 0, zero: rating === 0 })}>{rating}</span>
-          <h5>{date}</h5>
-          <p>{text}</p>
-        </div>
-      ))}
+      {items.map(({ date, rating, text, day, month }) => {
+        const diffDate = today.diff(moment().year(currentYear).month(month).date(day).startOf('day'), 'days')
+        const itemClass = classnames('rating', { [`fg-color-${rating}`]: rating > 0, zero: !rating })
+        return (
+          <div className="list-item" key={date}>
+            <span className={itemClass}>{rating}</span>
+            <h5>{diffDate <= 0 ? 'Today' : diffDate <= 1 ? 'Yesterday' : date}</h5>
+            <p>{text}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }
