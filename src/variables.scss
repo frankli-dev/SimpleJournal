@@ -17,6 +17,10 @@ $colors: (
   .fg-color-#{$index} {
     color: $color;
   }
+
+  .border-color-#{$index} {
+    border-color: $color;
+  }
 }
 
 .bg-gradient-0 {

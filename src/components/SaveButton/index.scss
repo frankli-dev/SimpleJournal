@@ -18,6 +18,10 @@
 
   background: none;
 
+  &.hide {
+    display: none;
+  }
+
   &:focus {
     outline: none;
   }
