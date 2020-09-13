@@ -17,6 +17,11 @@
     min-width: 174px;
     height: 96px;
 
+    &.active {
+      border: 4px solid #ffffff;
+      background: rgba(252, 251, 252, 0.9);
+    }
+
     .rating {
       background: #ffffff;
       border-radius: 30px;

@@ -52,7 +52,7 @@ function App() {
       <div className="main">
         <FeelingCard data={selected} onSave={onSave} onChange={onUpdateSelected} />
       </div>
-      <ListItems items={items} />
+      <ListItems items={items} current={selected.date} />
       <BottomBar />
     </div>
   )

@@ -1,15 +1,22 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 function useHorizontalScroll() {
+  const [hover, setHover] = useState(false)
   const elRef = useRef()
+
+  const handleMouseOver = () => setHover(true)
+  const handleMouseOut = () => setHover(false)
+
   useEffect(() => {
     const el = elRef.current
     if (el) {
-      console.log(el.scrollLeft, el.scrollHeight, el.scrollWidth)
-      el.scrollTo({
-        left: el.scrollWidth,
-        // behavior: 'smooth',
-      })
+      el.addEventListener('mouseover', handleMouseOver)
+      el.addEventListener('mouseout', handleMouseOut)
+
+      // go to the end at first render
+      el.scrollTo({ left: el.scrollWidth })
+
+      // on wheel event
       const onWheel = (e) => {
         e.preventDefault()
         el.scrollTo({
@@ -17,11 +24,17 @@ function useHorizontalScroll() {
           behavior: 'smooth',
         })
       }
+
       el.addEventListener('wheel', onWheel)
-      return () => el.removeEventListener('wheel', onWheel)
+
+      return () => {
+        el.removeEventListener('mouseover', handleMouseOver)
+        el.removeEventListener('mouseout', handleMouseOut)
+        el.removeEventListener('wheel', onWheel)
+      }
     }
   }, [])
-  return elRef
+  return [elRef, hover]
 }
 
 export default useHorizontalScroll
