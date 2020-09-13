@@ -18,3 +18,24 @@ $colors: (
     color: $color;
   }
 }
+
+.bg-gradient-0 {
+  background: linear-gradient(180deg, #b0b4ba 0%, #c6c6c8 34.03%, #cdc9c9 44.97%, #ccc1c1 62.15%, #c1b7bb 74.13%, #abadb7 86.11%, #9aa4ac 99.13%);
+}
+
+.bg-gradient-1 {
+  background: linear-gradient(180deg, #35394a 0%, #3b4057 47.16%, #1f202d 100%);
+}
+
+.bg-gradient-2 {
+  background: linear-gradient(180deg, #5563a9 0%, #5b669b 44.56%, #242b4c 100%);
+}
+.bg-gradient-3 {
+  background: linear-gradient(180deg, #7184e7 0%, #9caff6 49.77%, #8897c9 100%);
+}
+.bg-gradient-4 {
+  background: linear-gradient(180deg, #9984d5 0%, #e39db2 49.25%, #e687a4 100%);
+}
+.bg-gradient-5 {
+  background: linear-gradient(180deg, #f57694 0%, #f7b189 62.67%, #ffd28f 99.65%);
+}

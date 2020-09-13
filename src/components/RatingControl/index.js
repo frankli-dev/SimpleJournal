@@ -11,7 +11,7 @@ const RatingControl = ({ value, onChange }) => {
           const label = index + 1
           const itemClass = classnames('rating-control-item', { selected: label === value, [`bg-color-${label}`]: label === value })
           return (
-            <span key={index} className={itemClass}>
+            <span key={index} className={itemClass} onClick={() => onChange(label)}>
               {index + 1}
             </span>
           )
